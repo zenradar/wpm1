@@ -42,17 +42,22 @@ Edit the deploy.properties file and update the IP address. Replace the default v
     
     $\wildfly > docker run -d -p 8080:8080 -p 9990:9990 --name=<your-wildfly-container-name> <your-wildfly-image-name>
 
-You should be able to hit the Wildfly splash screen at: <host-IP-address>:8080 (eg. http://192.168.99.100:8080)
-And the Wildfly admin console at: <host-IP-address>:9990 (eg. http://192.168.99.100:9990)
+You should be able to hit the Wildfly splash screen at: 
+ <host-IP-address>:8080 (eg. http://192.168.99.100:8080)
+And the Wildfly admin console at: 
+ <host-IP-address>:9990 (eg. http://192.168.99.100:9990)
 
     $\wildfly > cli-config.sh (or cli-config.bat for windows)
 
 This will use the Jboss CLI to run the commands in the commands.cli file (using the properties in the deploy.porperties file).
 These automated steps are:
-1. Connect to the Wildfly console
-2. Deploy the MySQL and PostgreSQL JDBC drivers
-3. Add the MySQL and PostgreSQL Datasources
-4. Deploy the three applications: EmployeeApp.war, EmployeeApp_2.war and NumberQuiz.war
+ 1. Connect to the Wildfly console
+ 2. Deploy the MySQL and PostgreSQL JDBC drivers
+ 3. Add the MySQL and PostgreSQL Datasources
+ 4. Deploy the three applications: 
+   * EmployeeApp.war
+   * EmployeeApp_2.war
+   * NumberQuiz.war
 
 
 Access MySQL container and watch the employee table. Will have rows inserted from the EmployeeApp.
