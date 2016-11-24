@@ -7,8 +7,8 @@ First Docker project with Wildfly PostgreSQL and MySQL Containers
     
     $\mysql > docker build -t <your-mysql-image-name> .
 
-The wildfly.sql script will populate the server with a simple
-employee database table.
+The **wildfly.sql** script will populate the server with a simple
+*employee* database table.
 
 MySQL will expose port 3306
 
@@ -21,8 +21,8 @@ MySQL will expose port 3306
     
     $\postgres > docker build -t <your-postgres-image-name> .
 
-The init.sql script will populate the server with a simple
-employee database table.
+The **init.sql** script will populate the server with a simple
+*employee* database table.
 
 PostgreSQL will expose port 5432
 
@@ -31,10 +31,10 @@ PostgreSQL will expose port 5432
 
 ## 3. Install the Wildfly container
 
-Note the host IP address
-- if using Windows, docker-machine env <your-docker-machine-name>
+Make a note of the host IP address. If using boot2docker in Windows, 
+    docker-machine env <your-docker-machine-name>
 
-Edit the deploy.properties file and update the IP address. Replace the default value 192.168.99.100 with your host IP address.
+Edit the **deploy.properties** file and update the IP address. Replace the default value *192.168.99.100* with your host IP address.
 
     $ > cd wildfly
 
@@ -43,13 +43,14 @@ Edit the deploy.properties file and update the IP address. Replace the default v
     $\wildfly > docker run -d -p 8080:8080 -p 9990:9990 --name=<your-wildfly-container-name> <your-wildfly-image-name>
 
 You should be able to hit the Wildfly splash screen at: 
- <host-IP-address>:8080 (eg. http://192.168.99.100:8080)
+    http://<host-IP-address>:8080 (eg. http://192.168.99.100:8080)
 And the Wildfly admin console at: 
- <host-IP-address>:9990 (eg. http://192.168.99.100:9990)
+    http://<host-IP-address>:9990 (eg. http://192.168.99.100:9990)
 
+Run the **cli-config** script	
     $\wildfly > cli-config.sh (or cli-config.bat for windows)
 
-This will use the Jboss CLI to run the commands in the commands.cli file (using the properties in the deploy.porperties file).
+This will use the Jboss CLI to run the commands in the commands.cli file (using the properties in the deploy.properties file).
 These automated steps are:
  1. Connect to the Wildfly console
  2. Deploy the MySQL and PostgreSQL JDBC drivers
@@ -63,20 +64,20 @@ These automated steps are:
 Access MySQL container and watch the employee table. Will have rows inserted from the EmployeeApp.
 
     $ > docker exec -it <your-mysql-container-name> /bin/bash
-    &#35; > mysql --user=wildfly --password=wildfly
+    # > mysql --user=wildfly --password=wildfly
     mysql > use wildfly;
     mysql > select * from employee;
 
 Access PostgreSQL container and watch the employee table. Will have rows inserted from the EmployeeApp2.
 
     $ > docker exec -it <your-postgresql-container-name> /bin/bash
-    &#35; > mysql -U wildfly -d wildfly
-    wildfly=&#35; > select * from employee;
+    # > mysql -U wildfly -d wildfly
+    wildfly=# > select * from employee;
 
-Access applications at (replace 192.168.99.100 with your host IP adddress): 
-192.168.99.100:8080/EmployeeApp
-192.168.99.100:8080/EmployeeApp_2
-192.168.99.100:8080/NumberQuiz
+Access the applications at (replace *192.168.99.100* with your host IP adddress): 
+    http://192.168.99.100:8080/EmployeeApp
+    http://192.168.99.100:8080/EmployeeApp_2
+    http://192.168.99.100:8080/NumberQuiz
 
 
 
