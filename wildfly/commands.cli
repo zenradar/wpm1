@@ -1,0 +1,40 @@
+# 1.  Connect to the remote Wildfly Admin console
+
+connect ${wildfly-admin.console}
+
+
+# 2.  Deploy JDBC Connector Drivers  
+
+deploy --force ${ds.01.connector.mysql}
+
+deploy --force ${ds.02.connector.postgresql}
+
+
+# 3.  Add Data Sources
+
+data-source add \
+  --name=${ds.01.name} \
+  --jndi-name=${ds.01.jndi-name} \
+  --driver-class=${ds.01.driver-class} \
+  --driver-name=${ds.01.driver-name} \
+  --connection-url=${ds.01.connection.url} \
+  --user-name=${ds.01.user} \
+  --password=${ds.01.password}
+
+data-source add \
+  --name=${ds.02.name} \
+  --jndi-name=${ds.02.jndi-name} \
+  --driver-class=${ds.02.driver-class} \
+  --driver-name=${ds.02.driver-name} \
+  --connection-url=${ds.02.connection.url} \
+  --user-name=${ds.02.user} \
+  --password=${ds.02.password}
+
+  
+# 4.  Deploy applications 
+
+deploy EmployeeApp.war
+deploy EmployeeApp_2.war
+deploy NumberQuiz.war
+ 
+ 
