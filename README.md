@@ -1,6 +1,11 @@
 # wpm1
 First Docker project with Wildfly PostgreSQL and MySQL Containers
 
+## 0. Create the Named Volumes for the Databases
+
+    $ > docker volume create --name mysql-data-beta
+    $ > docker volume create --name postgres-data-alpha
+	
 ## 1. Install the MySQL container
 
     $ > cd mysql
