@@ -1,8 +1,7 @@
 # wpm1
 First Docker project with Wildfly PostgreSQL and MySQL Containers
 
-Assumptions: the **jboss-cli** is on the path.
-The Linux files need slight tweaking, will update with changes.
+Assumptions: **jboss-cli.bat** (windows) or **jboss-cli.sh** (linux) is on your path.
 
 ## 0. Create the Named Volumes for the Databases
 
