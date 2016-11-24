@@ -1,6 +1,9 @@
 # wpm1
 First Docker project with Wildfly PostgreSQL and MySQL Containers
 
+Assumptions: the **jboss-cli** is on the path.
+The Linux files need slight tweaking, will update with changes.
+
 ## 0. Create the Named Volumes for the Databases
 
     $ > docker volume create --name mysql-data-beta
@@ -64,6 +67,18 @@ These automated steps are:
    * EmployeeApp.war
    * EmployeeApp_2.war
    * NumberQuiz.war
+
+## Common Problems
+### WFLYCTL0211: Cannot resolve expression
+    WFLYCTL0211: Cannot resolve expression '${ds.01.jndi-name}'
+#### Solution:
+Solution:
+in *<wildfly-home>*/bin/jboss-cli.xml
+
+set
+
+    <resolve-parameter-values>true</resolve-parameter-values>
+
 
 
 Access MySQL container and watch the employee table. Will have rows inserted from the EmployeeApp.
