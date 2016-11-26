@@ -33,8 +33,8 @@ data-source add \
   
 # 4.  Deploy applications 
 
-deploy EmployeeApp.war
-deploy EmployeeApp_2.war
+deploy EmployeeMySQL.war
+deploy EmployeePostgreSQL.war
 deploy NumberQuiz.war
  
  
